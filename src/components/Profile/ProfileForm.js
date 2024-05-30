@@ -1,11 +1,13 @@
 import classes from './ProfileForm.module.css';
 import { useRef, useContext } from 'react';
 import AuthContext from '../../store/auth-context';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProfileForm = () => {
   const passRef = useRef();
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -30,7 +32,8 @@ const ProfileForm = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        navigate('/');
         alert('Password changed Successfully');
       })
       .catch(err => console.log(err));
